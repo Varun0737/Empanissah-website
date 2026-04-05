@@ -1,0 +1,164 @@
+/* ============================================================
+   MENU PAGE STYLES
+   ============================================================ */
+
+.menu-page { background: var(--cream); }
+
+.menu-category-nav {
+  position: sticky;
+  top: 72px;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.menu-category-inner {
+  display: flex;
+  align-items: stretch;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--section-px);
+}
+.menu-cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+.menu-cat-btn:hover { color: var(--red); }
+.menu-cat-btn.active { color: var(--red); border-bottom-color: var(--red); }
+
+.menu-page-content { padding: 3rem 0 5rem; }
+.menu-section { padding: 2rem 0 3rem; }
+.menu-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+.menu-section-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--gold-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.menu-section-header h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+.menu-section-header p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.menu-full-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.menu-full-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.menu-full-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold);
+}
+.menu-full-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  background: var(--cream-dark);
+}
+.menu-full-body {
+  padding: 1.25rem;
+}
+.menu-full-body .badge { margin-bottom: 0.6rem; }
+.menu-full-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.menu-full-body p {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Featured special card */
+.menu-special-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  border: none;
+}
+.menu-special-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.menu-special-price {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+  white-space: nowrap;
+}
+.menu-special-info h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 0.5rem; }
+.menu-special-info p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.65; }
+.menu-special-badge {
+  margin-left: auto;
+  background: var(--gold);
+  color: var(--white);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Allergen / note */
+.menu-note {
+  background: var(--navy-soft);
+  border: 1px solid rgba(27,61,110,0.15);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--navy);
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) { .menu-full-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .menu-full-grid { grid-template-columns: 1fr; }
+  .menu-special-card { flex-direction: column; gap: 1.5rem; }
+  .menu-special-badge { margin-left: 0; }
+}

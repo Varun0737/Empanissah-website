@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — Empanissah's | Authentic Latin Cuisine</title>
+  <meta name="description" content="Browse the full Empanissah's menu — empanadas 2 for $8, potato balls 2 for $7, $20 Create Your Plate, kids menu, drinks, and more. Fresh Latin food in Erie, PA.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <style>
+    /* Full Menu Image Lightbox */
+    #menu-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.94);
+      backdrop-filter: blur(12px);
+    }
+    #menu-lightbox.open { display: flex; }
+    #menu-lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    #menu-lb-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border: none;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #menu-lb-close:hover { background: rgba(255,255,255,0.28); }
+
+    /* Price tag */
+    .price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-top: 0.5rem;
+    }
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Addon pills */
+    .addon-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .addon-pill {
+      font-size: 0.73rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: 100px;
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Menu image showcase */
+    .menu-image-section {
+      background: var(--navy);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .menu-image-section .section-eyebrow { color: var(--gold-light); justify-content: center; }
+    .menu-image-section .section-eyebrow::before,
+    .menu-image-section .section-eyebrow::after { background: var(--gold-light); }
+    .menu-image-section h2 { color: var(--white); margin-bottom: 0.5rem; }
+    .menu-image-section p { color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2rem; }
+    .menu-board-thumb {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--transition), box-shadow var(--transition);
+      max-width: 480px;
+      width: 90%;
+    }
+    .menu-board-thumb:hover {
+      transform: scale(1.02);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .menu-board-thumb img { display: block; width: 100%; border-radius: var(--radius-lg); }
+    .menu-board-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-lg);
+    }
+    .menu-board-thumb:hover .menu-board-overlay { background: rgba(0,0,0,0.25); }
+    .menu-board-zoom {
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.5);
+      padding: 0.6rem 1.4rem;
+      border-radius: 100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .menu-board-thumb:hover .menu-board-zoom { opacity: 1; }
+
+    /* Condiments section */
+    .condiments-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .condiment-tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-light);
+      color: #7A5200;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="menu-page">
+
+<nav class="site-nav scrolled" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="logo-name" style="color:var(--red);">Empanissah's</span>
+        <span class="logo-tag" style="color:var(--text-muted);">Authentic Latin Cuisine</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html" class="active">Menu</a>
+      <a href="about.html">About</a>
+      <a href="catering.html">Catering</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="tel:8146160110" class="nav-cta">📞 Call Now</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <div class="nav-mobile-inner">
+      <a href="index.html">Home</a>
+      <a href="menu.html" class="active">Menu</a>
+      <a href="about.html">About</a>
+      <a href="catering.html">Catering</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact &amp; Location</a>
+      <a href="tel:8146160110" class="nav-mobile-cta">📞 Call Now — 814-616-0110</a>
+    </div>
+  </div>
+</nav>
+
+<div style="padding-top:72px;"></div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Menu</span></nav>
+    <div class="section-eyebrow" style="justify-content:center;">Create Your Taste</div>
+    <h1>Fresh. Flavorful. Latin.</h1>
+    <p>Every item made fresh daily. Real ingredients, real flavor, real love — every single time.</p>
+  </div>
+</section>
+
+<!-- Full Menu Board Image -->
+<section class="menu-image-section">
+  <div class="container">
+    <div class="section-eyebrow reveal">Our Full Menu</div>
+    <h2 class="reveal">See Everything We Offer</h2>
+    <p class="reveal">Click to view our full menu in detail</p>
+    <div class="menu-board-thumb reveal" onclick="openMenuLightbox()">
+      <img src="assets/images/menu_board.jpg" alt="Empanissah's full menu — Create Your Taste">
+      <div class="menu-board-overlay">
+        <div class="menu-board-zoom">🔍 View Full Menu</div>
+      </div>
+    </div>
+    <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:1.25rem;" class="reveal">Click to expand · Scroll below for details</p>
+  </div>
+</section>
+
+<!-- Sticky Category Nav -->
+<div class="menu-category-nav">
+  <div class="menu-category-inner">
+    <button class="menu-cat-btn active" onclick="scrollToSection('empanadas', this)">🫓 Empanadas</button>
+    <button class="menu-cat-btn" onclick="scrollToSection('potato-balls', this)">🥔 Potato Balls</button>
+    <button class="menu-cat-btn" onclick="scrollToSection('create-plate', this)">🍽 $20 Plates</button>
+    <button class="menu-cat-btn" onclick="scrollToSection('kids', this)">🧒 Kids Menu</button>
+    <button class="menu-cat-btn" onclick="scrollToSection('desserts', this)">🍰 Desserts</button>
+    <button class="menu-cat-btn" onclick="scrollToSection('drinks', this)">🥤 Drinks</button>
+  </div>
+</div>
+
+<div class="menu-page-content">
+  <div class="container">
+
+    <!-- ── EMPANADAS ── -->
+    <section class="menu-section" id="empanadas">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🫓</div>
+        <div>
+          <h2>Empanadas</h2>
+          <p>Hand-folded, fried golden — our signature. <strong style="color:var(--red);">2 for $8 &nbsp;·&nbsp; $4.50 each</strong></p>
+        </div>
+      </div>
+      <div class="menu-full-grid">
+
+        <div class="menu-full-card reveal">
+          <img class="menu-full-image" src="assets/images/hero_empanadas.png" alt="Beef & Cheese Empanada">
+          <div class="menu-full-body">
+            <span class="badge badge-red">Savory</span>
+            <h3>Beef &amp; Cheese</h3>
+            <p>Seasoned ground beef with onions, peppers &amp; potatoes, melted cheese, sealed in our golden crispy crust. A Puerto Rican classic — satisfying every single time.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-1">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Chicken & Cheese Empanada">
+          <div class="menu-full-body">
+            <span class="badge badge-red">Savory</span>
+            <h3>Chicken &amp; Cheese</h3>
+            <p>Tender shredded chicken seasoned with sofrito and island spices, melted with a rich cheese blend in our buttery, crispy shell.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-2">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Chipotle Chicken & Cheese">
+          <div class="menu-full-body">
+            <span class="badge badge-navy">Spicy</span>
+            <h3>Chipotle Chicken &amp; Cheese</h3>
+            <p>Smoky chipotle-glazed chicken with melted cheese — bold Latin smoke meets creamy melt. This one's hard to forget.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Pizza Empanada">
+          <div class="menu-full-body">
+            <span class="badge badge-red">Savory</span>
+            <h3>Pizza w/ Turkey Pepperoni</h3>
+            <p>All the flavors of pizza in a golden fried pocket — savory turkey pepperoni, melted cheese, tomato sauce. A crowd favorite.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-1">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Apple Pie Empanada">
+          <div class="menu-full-body">
+            <span class="badge badge-gold">Sweet</span>
+            <h3>Apple Pie w/ Caramel Drizzle</h3>
+            <p>Warm spiced apple filling, cinnamon sugar crust, and a silky caramel drizzle. Dessert you can hold in your hand.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-2">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Strawberry Cheesecake Empanada">
+          <div class="menu-full-body">
+            <span class="badge badge-gold">Sweet</span>
+            <h3>Strawberry Cheesecake w/ Choc Drizzle</h3>
+            <p>Creamy cheesecake filling with sweet strawberry, finished with a rich chocolate drizzle. Indulgence, hand-held.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Monthly special note -->
+      <div class="menu-note reveal" style="margin-top:1.5rem;">
+        <span>⭐</span>
+        <span><strong style="color:var(--navy);">Ask about our monthly special empanadas!</strong> We rotate limited-edition flavors each month — ask your server or call <a href="tel:8146160110" style="color:var(--navy);font-weight:600;">814-616-0110</a> to find out what's on.</span>
+      </div>
+
+      <!-- Customizations -->
+      <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-top:1.25rem;" class="reveal">
+        <h4 style="font-size:1rem;margin-bottom:0.75rem;">Customize Your Empanada</h4>
+        <p style="font-size:0.85rem;margin-bottom:0.75rem;"><span style="color:var(--red);font-weight:700;">$1 add-on:</span> Extra cheese · No cheese · Add rice · Hot Cheeto dust</p>
+        <p style="font-size:0.85rem;"><span style="color:var(--gold);font-weight:700;">50¢ condiments:</span></p>
+        <div class="condiments-grid">
+          <span class="condiment-tag">Ranch</span>
+          <span class="condiment-tag">Avocado Ranch</span>
+          <span class="condiment-tag">Chipotle Sauce</span>
+          <span class="condiment-tag">MK Sauce</span>
+          <span class="condiment-tag">Sour Cream</span>
+          <span class="condiment-tag">Hot Sauce</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── POTATO BALLS ── -->
+    <section class="menu-section" id="potato-balls">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🥔</div>
+        <div>
+          <h2>Rellenos de Papa <span style="font-size:1rem;font-weight:400;color:var(--text-muted);">(Potato Balls)</span></h2>
+          <p>Golden-fried stuffed potato bites. <strong style="color:var(--red);">2 for $7 &nbsp;·&nbsp; $4 each</strong></p>
+        </div>
+      </div>
+      <div class="menu-full-grid">
+
+        <div class="menu-full-card reveal">
+          <img class="menu-full-image" src="assets/images/potato_balls.png" alt="Beef & Cheese Potato Ball">
+          <div class="menu-full-body">
+            <span class="badge badge-red">Savory</span>
+            <h3>Beef &amp; Cheese</h3>
+            <p>Seasoned ground beef and melted cheese packed inside a crispy potato shell. The ultimate Latin snack — order two minimum.</p>
+            <div class="price-tag">$4 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $7</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-1">
+          <img class="menu-full-image" src="assets/images/potato_balls.png" alt="Chicken & Cheese Potato Ball">
+          <div class="menu-full-body">
+            <span class="badge badge-red">Savory</span>
+            <h3>Chicken &amp; Cheese</h3>
+            <p>Tender chicken and cheese folded into a golden-fried potato ball. Crispy outside, creamy and savory inside.</p>
+            <div class="price-tag">$4 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $7</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal reveal-delay-2">
+          <img class="menu-full-image" src="assets/images/potato_balls.png" alt="Chipotle Chicken Potato Ball">
+          <div class="menu-full-body">
+            <span class="badge badge-navy">Spicy</span>
+            <h3>Chipotle Chicken</h3>
+            <p>Smoky chipotle chicken packed in a crispy potato shell. Bold, smoky, and deeply satisfying with every bite.</p>
+            <div class="price-tag">$4 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $7</span></div>
+          </div>
+        </div>
+
+        <div class="menu-full-card reveal">
+          <img class="menu-full-image" src="assets/images/potato_balls.png" alt="Buffalo Chicken Potato Ball">
+          <div class="menu-full-body">
+            <span class="badge badge-navy">Spicy</span>
+            <h3>Buffalo Chicken</h3>
+            <p>Tangy, spicy buffalo chicken inside a perfectly fried potato shell. Dip it in ranch or avocado ranch for peak enjoyment.</p>
+            <div class="price-tag">$4 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $7</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CREATE YOUR PLATE ── -->
+    <section class="menu-section" id="create-plate">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🍽</div>
+        <div>
+          <h2>Create Your Plate</h2>
+          <p><strong style="color:var(--red);">$20</strong> — 1 Empanada + 2 Sides + Choice of Meat</p>
+        </div>
+      </div>
+
+      <div class="menu-full-grid">
+        <div class="menu-full-card menu-special-card reveal" style="grid-column:1/-1;">
+          <div class="menu-special-price">$20</div>
+          <div class="menu-special-info">
+            <h3>Create Your Plate</h3>
+            <p>Build your perfect Latin meal — 1 empanada of your choice, 2 sides, and 1 choice of meat. Everything fresh, everything made with love.</p>
+          </div>
+          <span class="menu-special-badge">Customizable</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;" class="reveal">
+        <!-- Sides -->
+        <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;">
+          <h4 style="font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;">🥗 Sides <span style="font-size:0.78rem;font-weight:500;color:var(--text-muted);">(choose 2)</span></h4>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>Spanish Rice</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>Macaroni &amp; Cheese</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>Potato Salad</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>Macaroni Salad w/ Chicken</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>White Rice w/ Beans</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.5rem 0 0;">
+              <span style="color:var(--text-muted);font-style:italic;">Individual side add-on</span><span style="color:var(--red);font-weight:700;">+$5</span>
+            </div>
+          </div>
+        </div>
+        <!-- Meats -->
+        <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;">
+          <h4 style="font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;">🍖 Meats <span style="font-size:0.78rem;font-weight:500;color:var(--text-muted);">(choose 1)</span></h4>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>🍗 Baked Chicken</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>🐷 Pernil (Shredded Pork)</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>🥩 Carne Frita (Fried Pork)</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--border);">
+              <span>🍗 Fried Wing Dings</span><span style="color:var(--text-muted);">Included</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.5rem 0 0;">
+              <span style="color:var(--text-muted);font-style:italic;">Individual meat add-on</span><span style="color:var(--red);font-weight:700;">+$6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── KIDS ── -->
+    <section class="menu-section" id="kids">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🧒</div>
+        <div>
+          <h2>Lil' Empanaditos</h2>
+          <p>For kids 10 and under — <strong style="color:var(--red);">$10</strong></p>
+        </div>
+      </div>
+      <div class="menu-full-grid">
+        <div class="menu-full-card menu-special-card reveal" style="grid-column:1/-1;">
+          <div class="menu-special-price">$10</div>
+          <div class="menu-special-info">
+            <h3>Lil' Empanaditos</h3>
+            <p>For kids 10 and under — 1 empanada, 1 side, and 1 meat. A full, satisfying meal sized right for little ones, made with the same love and freshness as everything else on our menu.</p>
+          </div>
+          <span class="menu-special-badge">Kids 10 &amp; Under</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DESSERTS ── -->
+    <section class="menu-section" id="desserts">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🍰</div>
+        <div>
+          <h2>Desserts</h2>
+          <p>Sweet endings made with love</p>
+        </div>
+      </div>
+      <div class="menu-full-grid">
+        <div class="menu-full-card reveal">
+          <img class="menu-full-image" src="assets/images/desserts.png" alt="Tres Leches">
+          <div class="menu-full-body">
+            <span class="badge badge-gold">Classic</span>
+            <h3>Tres Leches</h3>
+            <p>A light sponge cake soaked in three milks — evaporated, condensed, and cream. Topped with whipped cream and fresh strawberry. Silky and deeply satisfying.</p>
+          </div>
+        </div>
+        <div class="menu-full-card reveal reveal-delay-1">
+          <img class="menu-full-image" src="assets/images/desserts.png" alt="Cheesecake Flan">
+          <div class="menu-full-body">
+            <span class="badge badge-gold">Signature</span>
+            <h3>Cheesecake Flan</h3>
+            <p>Puerto Rican flan meets American cheesecake. Silky caramel glaze, creamy cheesecake base — the best of two worlds in one stunning dessert.</p>
+          </div>
+        </div>
+        <div class="menu-full-card reveal reveal-delay-2">
+          <img class="menu-full-image" src="assets/images/empanada_variety.png" alt="Sweet Empanadas">
+          <div class="menu-full-body">
+            <span class="badge badge-gold">Sweet</span>
+            <h3>Sweet Empanadas</h3>
+            <p>Apple Pie with caramel drizzle · Strawberry Cheesecake with chocolate drizzle. Each $4.50 ea, 2 for $8.</p>
+            <div class="price-tag">$4.50 <span style="font-size:0.8rem;font-weight:400;color:var(--text-muted);">ea · 2 for $8</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DRINKS ── -->
+    <section class="menu-section" id="drinks">
+      <div class="menu-section-header reveal">
+        <div class="menu-section-icon">🥤</div>
+        <div>
+          <h2>Drinks</h2>
+          <p>Cold and refreshing to pair with any meal</p>
+        </div>
+      </div>
+      <div class="menu-full-grid">
+        <div class="menu-full-card reveal" style="flex-direction:row;" >
+          <div class="menu-full-body" style="padding:1.75rem;">
+            <h3 style="font-size:1.1rem;margin-bottom:1rem;">Beverages</h3>
+            <div style="display:flex;flex-direction:column;gap:0.6rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:0.95rem;font-weight:500;">🥤 Pop (Soda)</span>
+                <span class="price-tag" style="font-size:1rem;">$2</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:0.95rem;font-weight:500;">💧 Water</span>
+                <span class="price-tag" style="font-size:1rem;">$1</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;">
+                <span style="font-size:0.95rem;font-weight:500;">🧃 Juice</span>
+                <span class="price-tag" style="font-size:1rem;">$2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loyalty note -->
+    <div style="background:var(--navy);border-radius:var(--radius-xl);padding:2.5rem;text-align:center;margin-bottom:3rem;" class="reveal">
+      <div class="section-eyebrow" style="justify-content:center;color:var(--gold-light);">Customer Rewards</div>
+      <h3 style="color:var(--white);font-size:1.4rem;margin-bottom:0.75rem;">Ask About Our Loyalty Program!</h3>
+      <p style="color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 1.5rem;font-size:0.9rem;">Frequent visitor? We reward our regulars. Ask any of our team members about qualifying for our Empanissah's loyalty program.</p>
+      <a href="tel:8146160110" class="btn btn-gold">📞 Call to Learn More</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Menu Lightbox -->
+<div id="menu-lightbox" onclick="closeMenuLightbox()">
+  <img src="assets/images/menu_board.jpg" alt="Full Empanissah's Menu">
+  <button id="menu-lb-close" onclick="closeMenuLightbox()">✕</button>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" style="width:88px;height:88px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,0.08);padding:4px;margin-bottom:0.75rem;display:block;">
+        <span class="logo-name">Empanissah's</span>
+        <span class="logo-tag">Fresh food with love</span>
+        <p>A family-owned Puerto Rican restaurant serving Erie, PA with handmade empanadas and authentic Latin cuisine.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/Empanissahs/61561961867814/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Follow on Facebook
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact &amp; Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <div class="footer-hours">
+          <div class="hour-row"><span class="day">Mon – Tue</span><span class="time">11AM–2PM, 5–10PM</span></div>
+          <div class="hour-row"><span class="day">Wed</span><span class="time closed">Closed</span></div>
+          <div class="hour-row"><span class="day">Thu</span><span class="time">11AM–2PM, 5PM–12AM</span></div>
+          <div class="hour-row"><span class="day">Fri – Sat</span><span class="time">11AM–2PM, 6PM–1AM</span></div>
+          <div class="hour-row"><span class="day">Sun</span><span class="time closed">Closed</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact">
+          <a href="https://maps.google.com/?q=38+North+Park+Row,+Erie,+PA+16501" target="_blank"><span class="icon">📍</span> 38 North Park Row, Erie, PA 16501</a>
+          <a href="tel:8146160110"><span class="icon">📞</span> 814-616-0110</a>
+          <a href="mailto:contact@empanissahs.com"><span class="icon">📧</span> contact@empanissahs.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Empanissah's. All rights reserved.</span>
+      <span>Made with ❤️ in Erie, PA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function scrollToSection(id, btn) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 140;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.menu-cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+function openMenuLightbox() {
+  document.getElementById('menu-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenuLightbox() {
+  document.getElementById('menu-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMenuLightbox();
+});
+</script>
+</body>
+</html>

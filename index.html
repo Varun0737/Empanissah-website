@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empanissah's — Authentic Latin Cuisine | Erie, PA</title>
+  <meta name="description" content="Empanissah's is a family-owned Puerto Rican restaurant in Erie, PA serving handmade empanadas, famous mac & cheese, tres leches, and more. Fresh food made with love.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(8px);
+    }
+    #lightbox-img-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 90vw;
+      max-height: 88vh;
+    }
+    #lightbox-img {
+      border-radius: 16px;
+      max-width: 90vw;
+      max-height: 84vh;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    #lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border: none;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+    #lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    #lightbox-prev, #lightbox-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      border: none;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
+    #lightbox-prev { left: 1.5rem; }
+    #lightbox-next { right: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="logo-name">Empanissah's</span>
+        <span class="logo-tag">Authentic Latin Cuisine</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="catering.html">Catering</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="tel:8146160110" class="nav-cta">📞 Call Now</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <div class="nav-mobile-inner">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="catering.html">Catering</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact & Location</a>
+      <a href="tel:8146160110" class="nav-mobile-cta">📞 Call Now — 814-616-0110</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">🇵🇷 Family-Owned · Erie, PA</div>
+      <h1>
+        Handmade <em>Empanadas</em><br>
+        Rooted in Puerto Rican Love
+      </h1>
+      <p class="hero-desc">
+        Golden, flaky crust. Rich, seasoned fillings. Every bite tells a story of family, tradition, and the warmth of authentic Latin cuisine — made fresh, made with love.
+      </p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-primary">View Our Menu</a>
+        <a href="catering.html" class="btn btn-secondary">Explore Catering</a>
+        <a href="contact.html" class="btn btn-secondary">Find Us</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><span class="dot"></span>Dine-In</div>
+        <div class="hero-badge"><span class="dot"></span>Takeout</div>
+        <div class="hero-badge"><span class="dot"></span>Catering</div>
+        <div class="hero-badge"><span class="dot"></span>Affordable Prices</div>
+      </div>
+    </div>
+    <div class="hero-illustration">
+      <img src="assets/images/mural_frog.png" alt="Empanissah's tropical frog mascot — our island spirit" loading="eager">
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ AWARD ═══════════════════════════════ -->
+<section class="award-section" id="award">
+  <div class="award-particles">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="award-inner">
+    <div class="award-content reveal">
+      <div class="award-eyebrow">Official Recognition</div>
+      <h2 class="award-headline">
+        Erie's <em>Award-Winning</em><br>Latin Kitchen
+      </h2>
+      <p class="award-desc">
+        We're proud and humbled to be recognized by <strong style="color:rgba(255,255,255,0.85);">BusinessRate</strong> as one of Erie's top-ranked restaurants — <strong style="color:rgba(255,255,255,0.85);">Ranked #3 in January 2026</strong>. This award is powered by real Google Reviews from our community, and it belongs to every customer who has walked through our doors.
+      </p>
+      <div class="award-pills">
+        <div class="award-pill"><span class="dot"></span> Ranked #3 — BusinessRate</div>
+        <div class="award-pill"><span class="dot"></span> January 2026 Award Winner</div>
+        <div class="award-pill"><span class="dot"></span> Powered by Google Reviews</div>
+        <div class="award-pill"><span class="dot"></span> Erie, PA Restaurant</div>
+      </div>
+      <a href="reviews.html" class="btn btn-gold">Read Our Reviews →</a>
+    </div>
+    <div class="award-plaque-wrap reveal reveal-delay-2">
+      <div class="award-plaque-glow"></div>
+      <img src="assets/images/Award.jpg" alt="Empanissah's — BusinessRate Ranked #3 Award, January 2026" class="award-plaque-img">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SIGNATURE EMPANADAS ═══════════════════════════════ -->
+<section class="section empanadas-section">
+  <div class="container">
+    <div class="empanadas-header reveal">
+      <div class="section-eyebrow">Our Signature</div>
+      <h2>Empanadas Made to Order</h2>
+      <div class="divider"></div>
+      <p style="max-width:560px;margin:0 auto;">Each empanada is hand-folded and fried to golden perfection — savory fillings, sweet surprises, and everything in between.</p>
+    </div>
+    <div class="empanada-cards">
+      <div class="empanada-card reveal reveal-delay-1">
+        <div class="empanada-card-image">
+          <img src="assets/images/hero_empanadas.png" alt="Beef & Cheese Empanada">
+        </div>
+        <div class="empanada-card-body">
+          <span class="badge badge-red">Savory</span>
+          <h4>Beef &amp; Cheese</h4>
+          <p>Seasoned ground beef, melted cheese, crispy golden crust — a Puerto Rican classic.</p>
+          <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;color:var(--red);margin-top:0.5rem;">$4.50 ea · 2 for $8</div>
+        </div>
+      </div>
+      <div class="empanada-card reveal reveal-delay-2">
+        <div class="empanada-card-image">
+          <img src="assets/images/empanada_variety.png" alt="Chicken & Cheese Empanada">
+        </div>
+        <div class="empanada-card-body">
+          <span class="badge badge-red">Savory</span>
+          <h4>Chicken &amp; Cheese</h4>
+          <p>Tender shredded chicken, rich cheese blend, wrapped in a perfectly flaky shell.</p>
+        </div>
+      </div>
+      <div class="empanada-card reveal reveal-delay-3">
+        <div class="empanada-card-image">
+          <img src="assets/images/empanada_variety.png" alt="Chipotle Chicken Empanada">
+        </div>
+        <div class="empanada-card-body">
+          <span class="badge badge-navy">Spicy</span>
+          <h4>Chipotle Chicken &amp; Cheese</h4>
+          <p>Smoky chipotle-glazed chicken with melted cheese — bold, smoky, unforgettable.</p>
+        </div>
+      </div>
+      <div class="empanada-card reveal reveal-delay-4">
+        <div class="empanada-card-image">
+          <img src="assets/images/empanada_variety.png" alt="Apple Pie Empanada">
+        </div>
+        <div class="empanada-card-body">
+          <span class="badge badge-gold">Sweet</span>
+          <h4>Apple Pie w/ Caramel Drizzle</h4>
+          <p>Warm spiced apple filling, cinnamon sugar crust with a silky caramel drizzle.</p>
+          <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;color:var(--red);margin-top:0.5rem;">$4.50 ea · 2 for $8</div>
+        </div>
+      </div>
+      <div class="empanada-card reveal reveal-delay-4">
+        <div class="empanada-card-image">
+          <img src="assets/images/empanada_variety.png" alt="Strawberry Cheesecake Empanada">
+        </div>
+        <div class="empanada-card-body">
+          <span class="badge badge-gold">Sweet</span>
+          <h4>Strawberry Cheesecake w/ Choc Drizzle</h4>
+          <p>Creamy cheesecake with sweet strawberry and rich chocolate drizzle — indulgence, hand-held.</p>
+          <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;color:var(--red);margin-top:0.5rem;">$4.50 ea · 2 for $8</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="menu.html" class="btn btn-outline-dark">See Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT PREVIEW ═══════════════════════════════ -->
+<section class="section about-preview">
+  <div class="container">
+    <div class="about-preview-image reveal">
+      <img src="assets/images/restaurant_interior.png" alt="Inside Empanissah's warm dining room">
+      <div class="image-caption">
+        <strong>A Place That Feels Like Home</strong>
+        <span>38 North Park Row, Erie, PA</span>
+      </div>
+    </div>
+    <div class="about-preview-text">
+      <div class="section-eyebrow reveal">Our Story</div>
+      <h2 class="reveal">Born from Passion,<br>Rooted in Puerto Rico</h2>
+      <div class="divider divider-left reveal"></div>
+      <p class="reveal">
+        Empanissah's wasn't just opened — it was built from the heart. Our chef and owner's love for cooking was sparked by Puerto Rican family traditions passed down through parents and grandparents. When life pushed her to start over, she did what she knew best: she cooked.
+      </p>
+      <p class="reveal">
+        Today, every dish is a love letter to Latin flavor. Every empanada is folded by hand. Every plate is prepared fresh, every single day. We're not a chain. We're a family — and our food tastes like it.
+      </p>
+      <div class="about-preview-values reveal">
+        <div class="about-value-item">
+          <div class="about-value-icon">🏠</div>
+          <div>
+            <h5>Family-Owned</h5>
+            <p>Built by our chef, run with heart</p>
+          </div>
+        </div>
+        <div class="about-value-item">
+          <div class="about-value-icon">🇵🇷</div>
+          <div>
+            <h5>Puerto Rican Roots</h5>
+            <p>Authentic flavors from the island</p>
+          </div>
+        </div>
+        <div class="about-value-item">
+          <div class="about-value-icon">✋</div>
+          <div>
+            <h5>Handmade Daily</h5>
+            <p>Fresh ingredients, made to order</p>
+          </div>
+        </div>
+        <div class="about-value-item">
+          <div class="about-value-icon">💛</div>
+          <div>
+            <h5>Made with Love</h5>
+            <p>Every plate, every time</p>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" class="btn btn-navy reveal">Read Our Full Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FEATURED MENU ═══════════════════════════════ -->
+<section class="section menu-preview">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:1rem;">
+      <div class="section-eyebrow" style="justify-content:center;">What We Serve</div>
+      <h2>Fresh. Flavorful. Latin.</h2>
+      <div class="divider"></div>
+      <p style="max-width:520px;margin:0 auto;">From our legendary empanadas to potato balls, plates, and desserts — every item is made fresh daily with Puerto Rican soul.</p>
+    </div>
+    <div class="menu-tabs-container reveal">
+      <div class="menu-tabs">
+        <button class="menu-tab-btn active" data-tab="tab-empanadas">🫓 Empanadas</button>
+        <button class="menu-tab-btn" data-tab="tab-sides">🥔 Sides &amp; Potato Balls</button>
+        <button class="menu-tab-btn" data-tab="tab-desserts">🍰 Desserts</button>
+        <button class="menu-tab-btn" data-tab="tab-plates">🍽 Plates &amp; Drinks</button>
+      </div>
+    </div>
+
+    <!-- ── TAB: EMPANADAS ── -->
+    <div class="menu-tab-panel active" id="tab-empanadas">
+      <div class="menu-items-grid">
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/hero_empanadas.png" alt="Beef &amp; Cheese Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Beef &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Seasoned beef with onions, peppers &amp; potatoes, melted cheese, golden crispy crust</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Chicken &amp; Cheese Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Chicken &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Tender shredded chicken seasoned with sofrito, melted with a rich cheese blend</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Chipotle Chicken Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Chipotle Chicken &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Smoky chipotle-glazed chicken with melted cheese — bold, smoky, unforgettable</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Pizza Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Pizza w/ Turkey Pepperoni</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>All the flavors of pizza in a golden fried pocket — a crowd favorite</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Apple Pie Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Apple Pie w/ Caramel Drizzle</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Warm spiced apple filling, cinnamon sugar crust, silky caramel drizzle</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Strawberry Cheesecake Empanada">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Strawberry Cheesecake w/ Choc Drizzle</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Creamy cheesecake filling, sweet strawberry, rich chocolate drizzle</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-top:1rem;">⭐ Ask about our <strong>monthly special empanada flavors!</strong> &nbsp;·&nbsp; +$1 add-ons: extra cheese, add rice, hot Cheeto dust &nbsp;·&nbsp; 50¢ condiments available</p>
+    </div>
+
+    <!-- ── TAB: SIDES & POTATO BALLS ── -->
+    <div class="menu-tab-panel" id="tab-sides">
+      <div class="menu-items-grid">
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/potato_balls.png" alt="Beef &amp; Cheese Potato Ball">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Potato Balls — Beef &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4</span>
+            </div>
+            <p>Seasoned beef and melted cheese inside a crispy golden potato shell</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Rellenos de Papa · 2 for $7</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1">
+          <img class="menu-item-image" src="assets/images/potato_balls.png" alt="Chicken &amp; Cheese Potato Ball">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Potato Balls — Chicken &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4</span>
+            </div>
+            <p>Tender chicken and cheese folded into a crispy fried potato ball</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Rellenos de Papa · 2 for $7</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <img class="menu-item-image" src="assets/images/potato_balls.png" alt="Chipotle Chicken Potato Ball">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Potato Balls — Chipotle Chicken</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4</span>
+            </div>
+            <p>Smoky chipotle chicken in a perfectly crispy potato shell</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Rellenos de Papa · 2 for $7</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/potato_balls.png" alt="Buffalo Chicken Potato Ball">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Potato Balls — Buffalo Chicken</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4</span>
+            </div>
+            <p>Tangy, spicy buffalo chicken inside a perfectly fried potato shell</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Rellenos de Papa · 2 for $7</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1">
+          <img class="menu-item-image" src="assets/images/mac_and_cheese.png" alt="Mac &amp; Cheese Side">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Macaroni &amp; Cheese</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">Side</span>
+            </div>
+            <p>15 years perfected. Ultra-creamy, golden-baked, unforgettable — included with $20 plate</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">+$5 individual add-on</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <img class="menu-item-image" src="assets/images/restaurant_interior.png" alt="Plate Sides">
+          <div class="menu-item-info">
+            <h4>More Sides Available</h4>
+            <p>Spanish Rice · Potato Salad · Macaroni Salad w/ Chicken · White Rice w/ Beans</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Included with $20 plate · +$5 individual add-on</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: DESSERTS ── -->
+    <div class="menu-tab-panel" id="tab-desserts">
+      <div class="menu-items-grid">
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/desserts.png" alt="Tres Leches">
+          <div class="menu-item-info">
+            <h4>Tres Leches</h4>
+            <p>Light sponge cake soaked in three milks, topped with whipped cream and fresh strawberry. Silky and deeply satisfying.</p>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1">
+          <img class="menu-item-image" src="assets/images/desserts.png" alt="Cheesecake Flan">
+          <div class="menu-item-info">
+            <h4>Cheesecake Flan</h4>
+            <p>Puerto Rican flan meets American cheesecake — silky caramel glaze, creamy cheesecake base. The best of two worlds.</p>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Apple Pie Empanada — Sweet">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Apple Pie w/ Caramel Drizzle</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Warm spiced apple filling, cinnamon sugar crust with a silky caramel drizzle — dessert you can hold</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal">
+          <img class="menu-item-image" src="assets/images/empanada_variety.png" alt="Strawberry Cheesecake Empanada — Sweet">
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Strawberry Cheesecake w/ Choc Drizzle</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$4.50</span>
+            </div>
+            <p>Creamy cheesecake with sweet strawberry and rich chocolate drizzle — indulgence, hand-held</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">2 for $8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: PLATES & DRINKS ── -->
+    <div class="menu-tab-panel" id="tab-plates">
+      <div class="menu-items-grid">
+        <div class="menu-item-card reveal" style="background:var(--gold-soft);border-color:var(--gold);">
+          <div style="width:72px;min-width:72px;height:72px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🍽</div>
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Create Your Plate</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--red);font-size:0.9rem;white-space:nowrap;">$20</span>
+            </div>
+            <p>1 empanada + 2 sides + choice of meat. Sides: Spanish rice, mac &amp; cheese, potato salad, macaroni salad, white rice w/ beans.</p>
+            <span style="font-size:0.72rem;color:#7A5200;">Meats: Baked Chicken · Pernil · Carne Frita · Fried Wing Dings</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-1" style="background:var(--navy-soft);border-color:var(--navy);">
+          <div style="width:72px;min-width:72px;height:72px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🧒</div>
+          <div class="menu-item-info">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h4>Lil' Empanaditos</h4>
+              <span style="font-family:var(--font-heading);font-weight:700;color:var(--navy);font-size:0.9rem;white-space:nowrap;">$10</span>
+            </div>
+            <p>Kids 10 &amp; under — 1 empanada, 1 side, 1 meat. Same fresh quality, perfect size for little ones.</p>
+            <span style="font-size:0.72rem;color:var(--navy);">For kids 10 and under</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal reveal-delay-2">
+          <div style="width:72px;min-width:72px;height:72px;background:var(--red-soft);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🥤</div>
+          <div class="menu-item-info">
+            <h4>Drinks</h4>
+            <p>Pop (Soda) · Water · Juice</p>
+            <span style="font-size:0.82rem;font-weight:600;color:var(--red);">Pop $2 &nbsp;·&nbsp; Water $1 &nbsp;·&nbsp; Juice $2</span>
+          </div>
+        </div>
+        <div class="menu-item-card reveal">
+          <div style="width:72px;min-width:72px;height:72px;background:var(--gold-soft);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🏆</div>
+          <div class="menu-item-info">
+            <h4>Loyalty Program</h4>
+            <p>Frequent visitor? Ask about our loyalty program — we reward our regulars!</p>
+            <span style="font-size:0.72rem;color:var(--text-light);">Ask any team member for details</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="menu.html" class="btn btn-primary">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ WEEKEND SPECIALS ═══════════════════════════════ -->
+<section class="section specials-section">
+  <div class="container">
+    <div>
+      <div class="section-eyebrow specials-eyebrow reveal">Served Daily</div>
+      <h2 style="color:var(--white);" class="reveal">Real Flavor,<br>Real Value</h2>
+      <div class="divider divider-left reveal" style="background:var(--gold-light);"></div>
+      <p style="color:rgba(255,255,255,0.7);max-width:380px;" class="reveal">Our platters are available every day. And on weekends, we sweeten the deal even more — because great food shouldn't break the bank.</p>
+    </div>
+    <div class="special-cards">
+      <div class="special-card reveal">
+        <div class="special-price">$20</div>
+        <div class="special-info">
+          <h3>Create Your Plate</h3>
+          <p>1 empanada + 2 sides + choice of meat. Spanish rice, mac &amp; cheese, pernil, baked chicken &amp; more. Available every day!</p>
+        </div>
+      </div>
+      <div class="special-card reveal reveal-delay-1">
+        <div class="special-price">$10</div>
+        <div class="special-info">
+          <h3>Lil' Empanaditos</h3>
+          <p>Kids 10 &amp; under — 1 empanada, 1 side, 1 meat. Same fresh quality, perfect size for the little ones. Available every day!</p>
+        </div>
+      </div>
+      <div class="special-card reveal reveal-delay-2" style="border-color:var(--gold);">
+        <div class="special-price" style="color:var(--gold);">$10</div>
+        <div class="special-info">
+          <h3>Weekend Meal Deal &nbsp;<span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--gold);color:#000;padding:0.15rem 0.55rem;border-radius:100px;vertical-align:middle;">Weekends Only</span></h3>
+          <p>2 empanadas + your choice of side. The best deal on the block, every Saturday &amp; Sunday.</p>
+        </div>
+      </div>
+      <p class="specials-note reveal">* Empanadas 2 for $8 · $4.50 each &nbsp;|&nbsp; Potato Balls 2 for $7 · $4 each &nbsp;|&nbsp; Ask about monthly special flavors &amp; our Loyalty Program!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ WHY PEOPLE LOVE US ═══════════════════════════════ -->
+<section class="section why-section">
+  <div class="container text-center">
+    <div class="section-eyebrow reveal" style="justify-content:center;">Why Empanissah's</div>
+    <h2 class="reveal">What Makes Us Different</h2>
+    <div class="divider reveal"></div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🫓</div>
+        <h4>Handmade Empanadas</h4>
+        <p>Folded fresh. Fried golden. Every single one made with love and attention to detail.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">🧀</div>
+        <h4>Famous Mac &amp; Cheese</h4>
+        <p>15 years in the making. Creamy, layered, and unlike anything you've ever tasted.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">🌿</div>
+        <h4>Always Fresh</h4>
+        <p>No shortcuts. No freezers. Everything is prepared fresh daily from quality ingredients.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">💰</div>
+        <h4>Truly Affordable</h4>
+        <p>Premium flavors without the premium price tag. Eating well shouldn't be a luxury.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <div class="why-icon">🇵🇷</div>
+        <h4>Authentic Latin Roots</h4>
+        <p>Puerto Rican flavors passed down through generations. This is the real thing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ GALLERY PREVIEW ═══════════════════════════════ -->
+<section class="section gallery-preview-section">
+  <div class="container text-center">
+    <div class="section-eyebrow reveal" style="justify-content:center;">A Peek Inside</div>
+    <h2 class="reveal">Food That Speaks for Itself</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal">Real food. Real moments. Real Empanissah's.</p>
+    <div class="gallery-grid-preview reveal">
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/hero_empanadas.png" alt="Golden fried empanadas" class="gallery-lightbox-trigger" data-src="assets/images/hero_empanadas.png" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/empanada_variety.png" alt="Empanada variety" class="gallery-lightbox-trigger" data-src="assets/images/empanada_variety.png" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/mac_and_cheese.png" alt="Famous mac & cheese" class="gallery-lightbox-trigger" data-src="assets/images/mac_and_cheese.png" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/desserts.png" alt="Tres leches and flan" class="gallery-lightbox-trigger" data-src="assets/images/desserts.png" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/restaurant_interior.png" alt="Inside the restaurant" class="gallery-lightbox-trigger" data-src="assets/images/restaurant_interior.png" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner">
+          <img src="assets/images/menu_board.jpg" alt="Our menu" class="gallery-lightbox-trigger" data-src="assets/images/menu_board.jpg" style="cursor:pointer;">
+          <div class="gallery-item-overlay"><div class="gallery-overlay-icon">⊕</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;" class="reveal">
+      <a href="gallery.html" class="btn btn-outline-dark">View Full Gallery →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ REVIEWS ═══════════════════════════════ -->
+<section class="section reviews-preview">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-eyebrow" style="justify-content:center;">Reviews</div>
+      <h2>People Are Talking</h2>
+      <div class="divider"></div>
+      <p style="max-width:480px;margin:0 auto;">Don't just take our word for it — hear from the Erie community.</p>
+    </div>
+    <div class="reviews-grid-preview">
+      <div class="review-card reveal">
+        <div class="review-card-top">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">M</div>
+            <div class="reviewer-details">
+              <h5>Maria T.</h5>
+              <span>Erie, PA</span>
+            </div>
+          </div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="review-source">Google</div>
+          </div>
+        </div>
+        <p class="review-text">The empanadas are absolutely incredible — flaky, golden, and stuffed with the most flavorful filling. The mac and cheese? I've been dreaming about it ever since. This place is a hidden gem in Erie!</p>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-card-top">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">J</div>
+            <div class="reviewer-details">
+              <h5>Jordan L.</h5>
+              <span>Erie, PA</span>
+            </div>
+          </div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="review-source">Facebook</div>
+          </div>
+        </div>
+        <p class="review-text">Came in on a Friday night and the energy was amazing. The $10 weekend combo is unbeatable — two empanadas and a side for that price? You cannot beat it. The chipotle chicken is my personal favorite.</p>
+      </div>
+      <div class="review-card reveal reveal-delay-4">
+        <div class="review-card-top">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">A</div>
+            <div class="reviewer-details">
+              <h5>Aisha R.</h5>
+              <span>Erie, PA</span>
+            </div>
+          </div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="review-source">Google</div>
+          </div>
+        </div>
+        <p class="review-text">The warmth you feel when you walk in is something special. Everyone is so welcoming, the food is fresh and full of flavor, and the desserts — the tres leches is everything. A true gem. Come hungry!</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;" class="reveal">
+      <a href="reviews.html" class="btn btn-outline-dark">See All Reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ VISIT US ═══════════════════════════════ -->
+<section class="section visit-section">
+  <div class="container">
+    <div class="visit-info">
+      <div class="section-eyebrow reveal">Come See Us</div>
+      <h2 class="reveal">Visit Empanissah's</h2>
+      <div class="divider divider-left reveal"></div>
+      <p class="description reveal">We're located in the heart of Erie, Pennsylvania. Walk-ins always welcome. No reservations needed — just come hungry.</p>
+      <div class="visit-details">
+        <div class="visit-detail reveal">
+          <div class="visit-detail-icon">📍</div>
+          <div class="visit-detail-body">
+            <h5>Address</h5>
+            <a href="https://maps.google.com/?q=38+North+Park+Row,+Erie,+PA+16501" target="_blank" rel="noopener">38 North Park Row<br>Erie, PA 16501</a>
+          </div>
+        </div>
+        <div class="visit-detail reveal">
+          <div class="visit-detail-icon">📞</div>
+          <div class="visit-detail-body">
+            <h5>Phone</h5>
+            <a href="tel:8146160110">814-616-0110</a>
+          </div>
+        </div>
+        <div class="visit-detail reveal">
+          <div class="visit-detail-icon">📧</div>
+          <div class="visit-detail-body">
+            <h5>Email</h5>
+            <a href="mailto:contact@empanissahs.com">contact@empanissahs.com</a>
+          </div>
+        </div>
+        <div class="visit-detail reveal">
+          <div class="visit-detail-icon">🕐</div>
+          <div class="visit-detail-body">
+            <h5>Hours</h5>
+            <div class="hours-table">
+              <div class="hours-row"><span class="day">Mon – Tue</span><span class="time">11AM–2PM, 5PM–10PM</span></div>
+              <div class="hours-row"><span class="day">Wednesday</span><span class="time closed">Closed</span></div>
+              <div class="hours-row"><span class="day">Thursday</span><span class="time">11AM–2PM, 5PM–12AM</span></div>
+              <div class="hours-row"><span class="day">Fri – Sat</span><span class="time">11AM–2PM, 6PM–1AM</span></div>
+              <div class="hours-row"><span class="day">Sunday</span><span class="time closed">Closed</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="visit-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.7408178649!2d-80.08586812393758!3d42.12960597120949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88330e32a4b9c8cf%3A0x4d9e4de9abb67e13!2s38%20N%20Park%20Row%2C%20Erie%2C%20PA%2016501!5e0!3m2!1sen!2sus!4v1712250000000!5m2!1sen!2sus"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Empanissah's location on Google Maps">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" style="width:88px;height:88px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,0.08);padding:4px;margin-bottom:0.75rem;display:block;">
+        <span class="logo-name">Empanissah's</span>
+        <span class="logo-tag">Fresh food with love</span>
+        <div class="footer-award">
+          <img src="assets/images/Award.jpg" alt="BusinessRate Award">
+          <div class="footer-award-text">
+            <strong>Ranked #3 — BusinessRate</strong>
+            <span>January 2026 Award Winner</span>
+          </div>
+        </div>
+        <p>A family-owned Puerto Rican restaurant rooted in tradition, flavor, and warmth. Serving Erie, PA with handmade empanadas and authentic Latin cuisine.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/Empanissahs/61561961867814/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Follow on Facebook
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact &amp; Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <div class="footer-hours">
+          <div class="hour-row"><span class="day">Mon – Tue</span><span class="time">11AM–2PM, 5–10PM</span></div>
+          <div class="hour-row"><span class="day">Wed</span><span class="time closed">Closed</span></div>
+          <div class="hour-row"><span class="day">Thu</span><span class="time">11AM–2PM, 5PM–12AM</span></div>
+          <div class="hour-row"><span class="day">Fri – Sat</span><span class="time">11AM–2PM, 6PM–1AM</span></div>
+          <div class="hour-row"><span class="day">Sun</span><span class="time closed">Closed</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact">
+          <a href="https://maps.google.com/?q=38+North+Park+Row,+Erie,+PA+16501" target="_blank" rel="noopener">
+            <span class="icon">📍</span> 38 North Park Row, Erie, PA 16501
+          </a>
+          <a href="tel:8146160110">
+            <span class="icon">📞</span> 814-616-0110
+          </a>
+          <a href="mailto:contact@empanissahs.com">
+            <span class="icon">📧</span> contact@empanissahs.com
+          </a>
+          <a href="https://www.facebook.com/people/Empanissahs/61561961867814/" target="_blank" rel="noopener">
+            <span class="icon">👍</span> Empanissah's on Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Empanissah's. All rights reserved.</span>
+      <span>Made with ❤️ in Erie, PA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

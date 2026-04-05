@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Empanissah's | Food &amp; Restaurant Photos</title>
+  <meta name="description" content="See Empanissah's in full flavor — photos of our handmade empanadas, famous mac & cheese, restaurant interior, and the beautiful mural that makes our space unique.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    #lightbox { display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; }
+    #lightbox.open { display:flex; }
+    #lightbox-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); }
+    #lightbox-img-wrap { position:relative; z-index:1; max-width:92vw; max-height:90vh; }
+    #lightbox-img { border-radius:16px; max-width:90vw; max-height:86vh; object-fit:contain; box-shadow:0 24px 80px rgba(0,0,0,0.5); }
+    #lightbox-close { position:fixed; top:1.5rem; right:1.5rem; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); color:white; font-size:1.1rem; cursor:pointer; border:none; backdrop-filter:blur(8px); transition:background 0.2s; }
+    #lightbox-close:hover { background:rgba(255,255,255,0.25); }
+    #lightbox-prev, #lightbox-next { position:fixed; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); color:white; font-size:2rem; cursor:pointer; border:none; backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+    #lightbox-prev:hover, #lightbox-next:hover { background:rgba(255,255,255,0.22); }
+    #lightbox-prev { left:1.5rem; }
+    #lightbox-next { right:1.5rem; }
+  </style>
+</head>
+<body class="gallery-page">
+
+<nav class="site-nav scrolled" id="site-nav" style="background:rgba(13,13,13,0.95);">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="logo-name">Empanissah's</span>
+        <span class="logo-tag" style="color:var(--gold);">Authentic Latin Cuisine</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" style="color:rgba(255,255,255,0.8);">Home</a>
+      <a href="menu.html" style="color:rgba(255,255,255,0.8);">Menu</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.8);">About</a>
+      <a href="catering.html" style="color:rgba(255,255,255,0.8);">Catering</a>
+      <a href="gallery.html" style="color:var(--red);">Gallery</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.8);">Reviews</a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.8);">Contact</a>
+      <a href="tel:8146160110" class="nav-cta">📞 Call Now</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile" style="background:var(--black);">
+    <div class="nav-mobile-inner">
+      <a href="index.html" style="color:rgba(255,255,255,0.8);">Home</a>
+      <a href="menu.html" style="color:rgba(255,255,255,0.8);">Menu</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.8);">About</a>
+      <a href="catering.html" style="color:rgba(255,255,255,0.8);">Catering</a>
+      <a href="gallery.html" class="active" style="color:var(--gold);">Gallery</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.8);">Reviews</a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.8);">Contact &amp; Location</a>
+      <a href="tel:8146160110" class="nav-mobile-cta">📞 Call Now — 814-616-0110</a>
+    </div>
+  </div>
+</nav>
+
+<div style="padding-top:72px;background:var(--black);"></div>
+
+<!-- Page Hero -->
+<section class="page-hero" style="background:var(--black);">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Gallery</span></nav>
+    <div class="section-eyebrow" style="justify-content:center; color:var(--gold);">A Visual Story</div>
+    <h1>Food That Speaks<br>for Itself</h1>
+    <p>Real food. Real moments. Real Empanissah's. Click any photo to explore in full.</p>
+  </div>
+</section>
+
+<!-- Gallery -->
+<div class="gallery-full">
+  <div class="container">
+    <div class="gallery-masonry">
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/hero_empanadas.png" alt="Golden fried empanadas, fresh from the kitchen" class="gallery-lightbox-trigger" data-src="assets/images/hero_empanadas.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/empanada_variety.png" alt="Empanada variety — savory and sweet" class="gallery-lightbox-trigger" data-src="assets/images/empanada_variety.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/mac_and_cheese.png" alt="15-year famous mac & cheese" class="gallery-lightbox-trigger" data-src="assets/images/mac_and_cheese.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/restaurant_interior.png" alt="The warm interior of Empanissah's restaurant" class="gallery-lightbox-trigger" data-src="assets/images/restaurant_interior.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/desserts.png" alt="Tres leches and cheesecake flan desserts" class="gallery-lightbox-trigger" data-src="assets/images/desserts.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/potato_balls.png" alt="Golden crispy potato balls" class="gallery-lightbox-trigger" data-src="assets/images/potato_balls.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/mural_frog.png" alt="Empanissah's tropical frog mural illustration" class="gallery-lightbox-trigger" data-src="assets/images/mural_frog.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/catering.png" alt="Empanissah's catering spread at an event" class="gallery-lightbox-trigger" data-src="assets/images/catering.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/menu_board.jpg" alt="Empanissah's full menu — Create Your Taste" class="gallery-lightbox-trigger" data-src="assets/images/menu_board.jpg">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+      <div class="gallery-masonry-item">
+        <img src="assets/images/hero_empanadas.png" alt="Empanada close-up detail" class="gallery-lightbox-trigger" data-src="assets/images/hero_empanadas.png">
+        <div class="gallery-masonry-overlay"><div class="gallery-masonry-icon">⊕</div></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;padding-bottom:2rem;">
+      <p style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:1.5rem;">Follow us on Facebook for the latest food photos and updates</p>
+      <a href="https://www.facebook.com/people/Empanissahs/61561961867814/" target="_blank" rel="noopener" class="btn btn-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Follow on Facebook
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/Logo.jpg" alt="Empanissah's Logo" style="width:88px;height:88px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,0.08);padding:4px;margin-bottom:0.75rem;display:block;">
+        <span class="logo-name">Empanissah's</span>
+        <span class="logo-tag">Fresh food with love</span>
+        <p>A family-owned Puerto Rican restaurant serving Erie, PA with handmade empanadas and authentic Latin cuisine.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/Empanissahs/61561961867814/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Follow on Facebook
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact &amp; Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <div class="footer-hours">
+          <div class="hour-row"><span class="day">Mon – Tue</span><span class="time">11AM–2PM, 5–10PM</span></div>
+          <div class="hour-row"><span class="day">Wed</span><span class="time closed">Closed</span></div>
+          <div class="hour-row"><span class="day">Thu</span><span class="time">11AM–2PM, 5PM–12AM</span></div>
+          <div class="hour-row"><span class="day">Fri – Sat</span><span class="time">11AM–2PM, 6PM–1AM</span></div>
+          <div class="hour-row"><span class="day">Sun</span><span class="time closed">Closed</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact">
+          <a href="https://maps.google.com/?q=38+North+Park+Row,+Erie,+PA+16501" target="_blank"><span class="icon">📍</span> 38 North Park Row, Erie, PA 16501</a>
+          <a href="tel:8146160110"><span class="icon">📞</span> 814-616-0110</a>
+          <a href="mailto:contact@empanissahs.com"><span class="icon">📧</span> contact@empanissahs.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Empanissah's. All rights reserved.</span>
+      <span>Made with ❤️ in Erie, PA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
